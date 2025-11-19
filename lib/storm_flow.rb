@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'storm_meta'
 
 module StormFlow
   def action(name, &block)
