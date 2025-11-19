@@ -3,7 +3,7 @@ begin
   require "storm_meta"
 rescue LoadError
 end
-require_relative "storm_flow"
+require_relative "lib/storm_flow"
 require "securerandom"
 
 class UserFlow
@@ -31,4 +31,5 @@ class UserFlow
 end
 
 result = UserFlow.register_user(name: "Alice", email: "alice@example.com")
+puts "AutoTune choice: #{StormMeta::AutoTune.last_choice}"
 puts result.inspect

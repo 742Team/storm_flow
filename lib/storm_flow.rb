@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StormFlow
   def action(name, &block)
     StormMeta::JIT.enable_yjit! rescue nil
@@ -8,8 +10,9 @@ module StormFlow
     @actions[name] = definition
 
     define_singleton_method(name) do |ctx = {}|
-      h = ctx.dup
+      h = ctx
       k = self
+
       proxy = Object.new
       proxy.define_singleton_method(:[]) { |key| h[key] }
       proxy.define_singleton_method(:[]=) { |key, value| h[key] = value }
@@ -23,6 +26,7 @@ module StormFlow
           super(m, *args, &blk)
         end
       end
+
       best = StormMeta::AutoTune.pick_best(
         {
           fast:   ->(x) { definition.call(x) },
@@ -32,7 +36,7 @@ module StormFlow
         iterations: 50
       )
       best.call(proxy)
-      h
+      ctx
     end
   end
 

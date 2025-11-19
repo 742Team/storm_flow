@@ -7,7 +7,7 @@ begin
 rescue LoadError
 end
 
-require_relative '../storm_flow'
+require_relative '../lib/storm_flow'
 
 class StormFlowIntegrationTest < Minitest::Test
   class UserFlow

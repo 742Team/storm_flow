@@ -1,0 +1,20 @@
+name: Ruby
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ["3.2", "3.3"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+      - name: Run tests
+        run: |
+          ruby -I vendor/storm_meta/lib -I lib -e "Dir['test/*_test.rb'].each{ |f| require_relative f }"

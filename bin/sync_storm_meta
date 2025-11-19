@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'fileutils'
+
+repo = 'https://github.com/742Team/storm_meta'
+dest = File.expand_path('../vendor/storm_meta', __dir__)
+
+if Dir.exist?(dest)
+  Dir.chdir(dest) do
+    system('git pull --ff-only') || abort('Failed to pull storm_meta')
+  end
+else
+  system("git clone #{repo} #{dest}") || abort('Failed to clone storm_meta')
+end
+
+git_dir = File.join(dest, '.git')
+FileUtils.rm_rf(git_dir) if Dir.exist?(git_dir)
+
+puts 'storm_meta synced into vendor/storm_meta'
