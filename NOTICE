@@ -1,0 +1,16 @@
+StormFlow — Notice
+
+Crédits et composants:
+
+- Ce projet utilise la bibliothèque « storm_meta » développée par 742Team
+  (MIT). Références: https://github.com/742Team/storm_meta
+
+- StormFlow illustre les fonctionnalités de métaprogrammation, JIT et
+  auto‑tuning exposées par `storm_meta` (modules: JIT, Meta, AutoTune, Action).
+
+Mentions légales:
+
+- Les marques et noms cités appartiennent à leurs propriétaires respectifs.
+- Aucune garantie: logiciel fourni « tel quel ».
+
+Auteur: DALM1 (742Team)
